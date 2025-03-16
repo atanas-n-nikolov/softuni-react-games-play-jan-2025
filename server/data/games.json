@@ -1,0 +1,18 @@
+{
+    "d25bde95-2379-4c20-8e4d-af6d8d73d59b": {
+        "title": "Mortal Kombat",
+        "category": "Action",
+        "maxLevel": "10",
+        "imageUrl": "https://m.media-amazon.com/images/M/MV5BNmRmN2I5M2EtNDA1Ny00N2ZmLWE3YWYtMjQ1NTFjY2Q4NWM5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+        "summary": "Brutal game",
+        "_id": "d25bde95-2379-4c20-8e4d-af6d8d73d59b"
+    },
+    "2457b01a-2a9e-4364-998d-496bdba8af7b": {
+        "title": "Couter-Strike",
+        "category": "FPS",
+        "maxLevel": "100",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/6/67/Counter-Strike_Box.jpg/220px-Counter-Strike_Box.jpg",
+        "summary": "Best shooting game ever",
+        "_id": "2457b01a-2a9e-4364-998d-496bdba8af7b"
+    }
+}
