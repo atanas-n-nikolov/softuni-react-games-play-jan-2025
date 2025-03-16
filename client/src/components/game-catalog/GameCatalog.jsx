@@ -1,6 +1,14 @@
+import { useEffect } from "react";
 import { Link } from "react-router";
+import gameService from "../../services/gameService";
 
 export default function GameCatalog() {
+    useEffect(() => {
+        gameService.getAll().then(result => {
+            
+        })
+    })
+
     return (
         <section id="catalog-page">
             <h1>All Games</h1>
