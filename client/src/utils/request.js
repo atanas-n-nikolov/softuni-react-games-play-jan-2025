@@ -14,8 +14,11 @@ const request = async (method, url, data, options = {}) => {
         };
     };
 
-
+    
     const response = await fetch(url, options);
+    if (!response.headers.get('Content-Type')) {
+        return;
+    };
 
     const result = await response.json();
 
