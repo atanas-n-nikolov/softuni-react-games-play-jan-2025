@@ -1,17 +1,8 @@
-import { UserContext } from "../contexts/UserContext";
+import useAuth from "../hooks/useAuth";
 import request from "../utils/request";
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const baseUrl = 'http://localhost:3030/data/games';
-
-export default {
-    delete(gameId) {
-        return request.delete(`${baseUrl}/${gameId}`);
-    },
-    edit(gameId, gameData) {
-        return request.put(`${baseUrl}/${gameId}`, { ...gameData, _id: gameId });
-    },
-};
 
 export const useGames = () => {
     const [games, setGames] = useState([]);
@@ -25,17 +16,23 @@ export const useGames = () => {
     };
 };
 
-export const useCreateGame = () => {
-    const { accessToken } = useContext(UserContext);
-
-    const options = {
-        headers: {
-            'X-Authorization': accessToken,
-        }
+export const useGame = (gameId) => {
+    const [game, setGame] = useState({});
+    
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`).then(setGame);
+    }, [gameId]);
+    
+    return {
+        game,
     };
+};
+
+export const useCreateGame = () => {
+    const { request } = useAuth();
 
     const create = (gameData) => {
-        return request.post(baseUrl, gameData, options);
+        request.post(baseUrl, gameData);
     };
 
     return {
@@ -43,14 +40,26 @@ export const useCreateGame = () => {
     };
 };
 
-export const useGame = (gameId) => {
-    const [game, setGame] = useState({});
+export const useEditGame = () => {
+    const { request } = useAuth();
 
-    useEffect(() => {
-        request.get(`${baseUrl}/${gameId}`).then(setGame);
-    }, [gameId]);
+    const edit = (gameId, gameData) => {
+        return request.put(`${baseUrl}/${gameId}`, { ...gameData, _id: gameId });
+    };
 
     return {
-        game,
+        edit,
+    }
+};
+
+export const useDeleteGame = () => {
+    const { request } = useAuth();
+
+    const deleteGame = (gameId) => {
+        return request.delete(`${baseUrl}/${gameId}`);
     };
+
+    return {
+        deleteGame,
+    }
 };
