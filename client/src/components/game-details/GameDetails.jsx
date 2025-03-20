@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useParams } from "react-router";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentsCreate from "../comments-create/CommentsCreate";
-import commentService from "../../services/commentService";
 import { useDeleteGame, useGame } from "../../api/gameApi";
 import useAuth from "../../hooks/useAuth";
+import { useComments } from "../../api/commentsApi";
 
 export default function GameDetails() {
     const navigate = useNavigate();
     const { email, _id: userId } = useAuth();
-    const [comments, setComments] = useState([]);
     const { gameId } = useParams();
     const { game } = useGame(gameId);
     const { deleteGame } = useDeleteGame();
-
-    useEffect(() => {
-        commentService.getAll(gameId)
-        .then(setComments);
-    }, [gameId]);
-
+    const { comments } = useComments(gameId);
 
     const gameDeleteClickHandler = async () => {
         const hasConfirm = confirm(`Are you sure you want to delete this ${game.title} game?`);
