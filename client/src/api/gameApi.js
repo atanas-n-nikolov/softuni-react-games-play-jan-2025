@@ -5,10 +5,6 @@ import { useContext, useEffect, useState } from "react"
 const baseUrl = 'http://localhost:3030/data/games';
 
 export default {
-    getOne(gameId) {
-        return request.get(`${baseUrl}/${gameId}`);
-    },
-    
     delete(gameId) {
         return request.delete(`${baseUrl}/${gameId}`);
     },
@@ -44,5 +40,17 @@ export const useCreateGame = () => {
 
     return {
         create,
+    };
+};
+
+export const useGame = (gameId) => {
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        request.get(`${baseUrl}/${gameId}`).then(setGame);
+    }, [gameId]);
+
+    return {
+        game,
     };
 };
