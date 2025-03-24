@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route } from 'react-router';
 import { UserContext } from './contexts/UserContext';
 
@@ -13,9 +12,10 @@ import GameEdit from './components/game-edit/GameEdit';
 
 import './App.css'
 import Logout from './components/logout/Logout';
+import usePersistedStane from './hooks/usePersistedState';
 
 export default function App() {
-    const [authData, setAuthData] = useState({});
+    const [authData, setAuthData] = usePersistedStane('auth', {});
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);
