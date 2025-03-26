@@ -1,10 +1,10 @@
-import { useActionState, useContext } from "react";
+import { useActionState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLogin } from "../../api/authApi";
-import { UserContext } from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 
 export default function Login() {
-    const { userLoginHandler } = useContext(UserContext);
+    const { userLoginHandler } = useUserContext();
     const navigate = useNavigate();
     const { login } = useLogin();
 

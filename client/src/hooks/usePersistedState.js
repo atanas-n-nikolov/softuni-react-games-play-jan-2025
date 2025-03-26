@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function usePersistedStane(stateKey, initialState) {
+export default function usePersistedState(stateKey, initialState) {
     const [state, setState] = useState(() => {
         const persistedState = localStorage.getItem(stateKey);
 
@@ -13,7 +13,7 @@ export default function usePersistedStane(stateKey, initialState) {
         return persistedStateData;
     });
 
-    const setPersistedStane  = (input) => {
+    const setPersistedState  = (input) => {
         const data = typeof input === 'function' ? input(state) : input;
 
         const persistedData = JSON.stringify(data);
@@ -25,6 +25,6 @@ export default function usePersistedStane(stateKey, initialState) {
 
     return [
         state,
-        setPersistedStane
+        setPersistedState
     ]
 }
