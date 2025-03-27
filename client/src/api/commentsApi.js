@@ -17,6 +17,7 @@ export const useComments = (gameId) => {
 
     return {
         comments,
+        setComments
     }
 }
 
